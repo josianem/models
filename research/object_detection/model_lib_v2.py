@@ -587,6 +587,7 @@ def train_loop(
   ## Train the model
   # Get the appropriate filepath (temporary or not) based on whether the worker
   # is the chief.
+  detection_model.feature_extractor.trainable = False
   summary_writer_filepath = get_filepath(strategy,
                                          os.path.join(model_dir, 'train'))
 
