@@ -588,7 +588,7 @@ def train_loop(
   # Get the appropriate filepath (temporary or not) based on whether the worker
   # is the chief.
   print("hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo")
-  print(vars(detection_model))
+  print(vars(detection_model.feature_extractor))
   for x in range(2,6):
       detection_model.layers[x].trainable = False
   summary_writer_filepath = get_filepath(strategy,
