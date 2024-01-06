@@ -158,6 +158,8 @@ def _ensure_model_is_built(model, input_dataset, unpad_groundtruth_tensors):
       get the shapes for the dummy loss computation.
     unpad_groundtruth_tensors: A parameter passed to unstack_batch.
   """
+  for x in range(2,6):
+      model.layers[x].trainable = False
   features, labels = iter(input_dataset).next()
 
   @tf.function
@@ -587,8 +589,6 @@ def train_loop(
   ## Train the model
   # Get the appropriate filepath (temporary or not) based on whether the worker
   # is the chief.
-  for x in range(2,6):
-      model.layers[x].trainable = False
   summary_writer_filepath = get_filepath(strategy,
                                          os.path.join(model_dir, 'train'))
 
